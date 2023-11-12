@@ -1,0 +1,11 @@
+### Test GET Request to the home page
+GET http://localhost:3000/
+
+### Test GET Request for Dine Collection
+GET http://localhost:3000/api/dine
+
+### Test GET Request for Play Collection
+GET http://localhost:3000/api/play
+
+### Test GET Request for Sleep Collection
+GET http://localhost:3000/api/sleep
