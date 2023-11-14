@@ -1,0 +1,30 @@
+### Test for the User API
+
+# {
+#   "_id": "user-id-number-goes-here",
+#   "oauthId": "Oauth-id-number-goes-here",
+#   "displayName": "John Doe",
+#   "email": "jdoe@testemail.com",
+#   "profileImage": "https://link-to-image.com/image.jpg",
+#   "role": "user",
+#   "createdAt": "2023-11-13T22:39:02.946Z",
+#   "updatedAt": "2023-11-13T22:39:02.946Z",
+#   "__v": 0
+# }
+
+### Test GET all Users
+GET http://localhost:3000/api/users
+
+### Test GET Request for a Single User
+GET http://localhost:3000/api/users/6552a586f8d5b59effa4aa69
+
+### Test PATCH Request to Update a User
+PATCH http://localhost:3000/api/users/6552a586f8d5b59effa4aa69
+Content-Type: application/json
+
+{
+    "role": "admin"
+}
+
+### Test DELETE Request to Delete a User
+DELETE http://localhost:3000/api/users/:id

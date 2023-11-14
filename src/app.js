@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
-const sleepRoutes = require('./api/sleepRoutes');
+const apiRoutes = require('./api');
 const authRoutes = require('./auth/authRoutes') // Adjust the path as needed
 const passport = require('passport');
 
@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Use the Sleep routes
-app.use('/api', sleepRoutes);
+app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
 // Basic route

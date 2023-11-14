@@ -1,0 +1,47 @@
+### Test GET Request for All Accommodations
+GET http://localhost:3000/api/accommodations
+
+### Test GET Request for an Individual Accommodation
+GET http://localhost:3000/api/accommodations/6552cd3db46d3ccf8aa15675
+
+
+### Test POST Request to Create a New Accommodation
+POST http://localhost:3000/api/accommodations
+Content-Type: application/json
+
+{
+    "name": "Dreamy Escape",
+    "location": "123 Paradise Road, Tropical Island",
+    "description": "A luxurious and serene retreat for those looking for a dreamy escape.",
+    "price": 250,
+    "rating": 5,
+    "amenities": ["Free Wi-Fi", "Pool", "Spa", "Gym"],
+    "images": [
+        "https://example.com/images/accommodation1.jpg",
+        "https://example.com/images/accommodation2.jpg"
+    ],
+    "available": true,
+    "travelType": "luxury"
+}
+
+### Test PATCH Request to Update an Accommodation
+PATCH http://localhost:3000/api/accommodations/6552cf09b46d3ccf8aa15679
+Content-Type: application/json
+
+{
+    "name": "Dreamy Escape",
+    "location": "123 Paradise Road, Tropical Island",
+    "description": "A luxurious and serene retreat for those looking for a dreamy escape.",
+    "price": 350,
+    "rating": 5,
+    "amenities": ["Free Wi-Fi", "Pool", "Spa", "Gym"],
+    "images": [
+        "https://example.com/images/accommodation1.jpg",
+        "https://example.com/images/accommodation2.jpg"
+    ],
+    "available": true,
+    "travelType": "luxury"
+}
+
+### Test DELETE Request for an Accommodation
+DELETE http://localhost:3000/api/accommodations/6552cf09b46d3ccf8aa15679

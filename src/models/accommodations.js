@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const sleepSchema = new mongoose.Schema({
+const accommodationSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -28,10 +28,15 @@ const sleepSchema = new mongoose.Schema({
     available: {
         type: Boolean,
         default: true
+    },
+    travelType: {
+        type: String,
+        enum: ['adventure', 'eco', 'culture', 'social', 'relaxation', 'luxury'],
+        required: true
     }
     // Add other fields as needed
 });
 
-const Sleep = mongoose.model('Sleep', sleepSchema);
+const Accommodation = mongoose.model('Accommodation', accommodationSchema);
 
-module.exports = Sleep;
+module.exports = Accommodation;
