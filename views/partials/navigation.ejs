@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+        <li><a href="/sleep">Sleep</a></li>
+        <li><a href="/dine">Dine</a></li>
+        <li><a href="/explore">Explore</a></li>
+        <li><a href="/about">About</a></li>
+        <% if (user) { %>
+            <!-- If user is logged in, show profile link -->
+            <li><a href="/profile">Profile</a></li>
+        <% } else { %>
+            <!-- If user is not logged in, show login link -->
+            <li><a href="/login">Login</a></li>
+        <% } %>
+    </ul>
+</nav>

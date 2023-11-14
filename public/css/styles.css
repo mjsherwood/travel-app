@@ -1,0 +1,111 @@
+/* Global Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5F5F5;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #007FFF;
+}
+
+a {
+    text-decoration: none;
+    color: #007FFF;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #007FFF, #FF6A00);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-image: linear-gradient(to right, #FF6A00, #007FFF);
+}
+
+/* Forms */
+form {
+    background-color: #F5F5F5;
+    border: 1px solid #007FFF;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #007FFF;
+    border-radius: 5px;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #007FFF;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #FF6A00;
+}
+
+/* Cards */
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+}
+
+.card-title {
+    color: #007FFF;
+    font-size: 1.2em;
+}
+
+/* Footer */
+footer {
+    background-color: #007FFF;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 768px) {
+    nav ul li {
+        float: none;
+    }
+}
+
+/* Additional Elements */
+/* ... Include styles for icons, imagery, etc. as needed ... */

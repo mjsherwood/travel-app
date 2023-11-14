@@ -2,7 +2,9 @@ const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const apiRoutes = require('./api');
-const authRoutes = require('./auth/authRoutes') // Adjust the path as needed
+const authRoutes = require('./auth/authRoutes')
+const frontendRoutes = require('./routes'); 
+const path = require('path');
 const passport = require('passport');
 
 require('./config/passport'); 
@@ -11,8 +13,18 @@ require('dotenv').config();
 
 const app = express();
 
+//set up view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '..', 'views'));
+
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// Middleware to attach 'user' to all views
+app.use((req, res, next) => {
+  res.locals.user = req.user; // req.user is defined by passport
+  next();
+});
 
 // Initialize session middleware
 app.use(session({
@@ -33,9 +45,12 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
-// Use the Sleep routes
+// Use the api routes
 app.use('/api', apiRoutes);
+// Use the auth routes
 app.use('/auth', authRoutes);
+// Use the frontend routes
+app.use('/', frontendRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
