@@ -1,0 +1,48 @@
+### Test GET Request for All Restaurants
+GET http://localhost:3000/api/restaurants
+
+### Test GET Request for an Individual Restaurant
+GET http://localhost:3000/api/restaurants/6552db4ed5258c2aaae6c0e3
+# Replace :id with the actual restaurant ID
+
+### Test POST Request to Create a New Restaurant
+POST http://localhost:3000/api/restaurants
+Content-Type: application/json
+
+{
+    "name": "Gourmet Haven",
+    "location": "456 Gourmet Street, Foodie City",
+    "description": "A delightful experience for your taste buds, offering a range of exquisite dishes.",
+    "priceRange": "$$$",
+    "rating": 4.5,
+    "specialties": ["Seafood Platter", "Gourmet Steak", "Exotic Salads"],
+    "images": [
+        "https://example.com/images/restaurant1.jpg",
+        "https://example.com/images/restaurant2.jpg"
+    ],
+    "restaurantType": "luxury"
+}
+
+### Test PATCH Request to Update a Restaurant
+PATCH http://localhost:3000/api/restaurants/6552db4ed5258c2aaae6c0e3
+Content-Type: application/json
+
+{
+    "name": "Gourmet Haven",
+    "location": "456 Gourmet Street, Foodie City",
+    "description": "A delightful experience for your taste buds, offering a range of exquisite dishes.",
+    "priceRange": "$$$$",
+    "rating": 4.5,
+    "specialties": ["Seafood Platter", "Gourmet Steak", "Exotic Salads"],
+    "images": [
+        "https://example.com/images/restaurant1.jpg",
+        "https://example.com/images/restaurant2.jpg"
+    ],
+    "restaurantType": "luxury"
+}
+
+# Replace :id with the actual restaurant ID
+
+### Test DELETE Request for a Restaurant
+DELETE http://localhost:3000/api/restaurants/6552dbafd5258c2aaae6c0e8
+# Replace :id with the actual restaurant ID
