@@ -51,6 +51,8 @@ app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 // Use the frontend routes
 app.use('/', frontendRoutes);
+//Public folder
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Basic route
 app.get('/', (req, res) => {
