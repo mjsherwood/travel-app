@@ -1,0 +1,46 @@
+### Test GET Request for All Experiences
+GET http://localhost:3000/api/experiences
+
+### Test GET Request for an Individual Experience
+GET http://localhost:3000/api/experiences/6552dff9720e1cdf05641c21
+# Replace :id with the actual experience ID
+
+### Test POST Request to Create a New Experience
+POST http://localhost:3000/api/experiences
+Content-Type: application/json
+
+{
+    "title": "Helicopter Grand Canyon Tour",
+    "location": "Las Vegas, NV",
+    "description": "Experience breathtaking views of the Grand Canyon with our exclusive helicopter tour.",
+    "price": 300,
+    "duration": "4 hours",
+    "rating": 4.8,
+    "images": [
+        "https://example.com/images/experience1.jpg",
+        "https://example.com/images/experience2.jpg"
+    ],
+    "experienceType": "adventure"
+}
+
+### Test PATCH Request to Update an Experience
+PATCH http://localhost:3000/api/experiences/6552dff9720e1cdf05641c21
+Content-Type: application/json
+
+{
+    "title": "Updated Helicopter Grand Canyon Tour",
+    "price": 350,
+    "duration": "4 hours",
+    "rating": 5,
+    "images": [
+        "https://example.com/images/newexperience1.jpg",
+        "https://example.com/images/newexperience2.jpg"
+    ],
+    "experienceType": "luxury"
+}
+
+# Replace :id with the actual experience ID
+
+### Test DELETE Request for an Experience
+DELETE http://localhost:3000/api/experiences/6552e00d720e1cdf05641c23
+# Replace :id with the actual experience ID
