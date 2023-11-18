@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'editor', 'admin'],
         default: 'user'
     },
+    //Travel Type (Optional)
+    role: {
+        type: String,
+        enum: ['adventure', 'eco', 'culture', 'social', 'relaxation', 'luxury'],
+        required: false
+    },
     // Additional fields as needed for your application
     // ...
 }, { timestamps: true });  // Adds createdAt and updatedAt timestamps

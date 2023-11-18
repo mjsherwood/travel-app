@@ -49,27 +49,40 @@ input, select, textarea {
     border-radius: 5px;
 }
 
+/* Header */
+header {
+    text-align: center;
+}
+
+.logo-container {
+    margin: 10px 10px 10px 10px;
+}
+
 /* Navigation Bar */
 nav {
     background-color: #007FFF;
     overflow: hidden;
+    padding: 10px 0;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 nav ul li {
-    float: left;
+    display: inline-block;
+    margin: 0 10px;
 }
 
 nav ul li a {
-    display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 8px 16px;
     text-decoration: none;
 }
 
@@ -77,19 +90,81 @@ nav ul li a:hover {
     background-color: #FF6A00;
 }
 
+/* Invisible Spacer */
+nav ul li.spacer {
+    flex-grow: 1;
+}
+
+/* Position the last item (Login) to the right */
+nav ul li:last-child {
+    margin-left: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    /* Reset the last item's margin and the spacer for mobile view */
+    nav ul li:last-child, nav ul li.spacer {
+        margin-left: 0;
+        flex-grow: 0;
+    }
+}
+
+/* Hero Banner */
+.hero-banner {
+    background-image: url('/images/hero/homehero1.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 31.25%;
+}
+
+.hero-text {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+}
+
+.btn-discover {
+    /* Inherits styles from .btn */
+    font-size: 1.2em; /* Adjust as needed */
+    margin-top: 20px;
+}
+
 /* Cards */
+.cards-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Ensures cards wrap in smaller viewports */
+    margin-bottom: 40px; /* Space below the cards section */
+}
+
 .card {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin: 10px;
-    border-radius: 10px;
-    padding: 20px;
-    color: black;
+    width: 28%; /* Each card takes up a third of the container width */
+    height: 400px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid white; /* White border */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    margin: 30px; /* Increased margin for more space */
+    border-radius: 10px; /* Optional: Rounded corners */
 }
 
 .card-title {
-    color: #007FFF;
-    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
 }
 
 /* Footer */
@@ -100,10 +175,46 @@ footer {
     padding: 20px 0;
 }
 
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links ul li {
+    margin: 5px 10px;
+}
+
+.footer-links ul li a {
+    color: white; /* Override color for footer links */
+    text-decoration: none;
+}
+
+/* Hover effect for footer links (optional) */
+.footer-links ul li a:hover {
+    color: #FF6A00; /* Change color on hover */
+}
+
+.footer-logo img {
+    height: 75px;
+    width: auto;
+}
+
 /* Responsiveness */
 @media only screen and (max-width: 768px) {
     nav ul li {
         float: none;
+    }
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 80%; /* Adjust card width for mobile */
+        margin-bottom: 20px;
     }
 }
 
