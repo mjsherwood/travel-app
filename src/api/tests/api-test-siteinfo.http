@@ -1,0 +1,41 @@
+### Test GET Request for All Site Information
+GET http://localhost:3000/api/site-info
+
+### Test GET Request for Specific Site Information by infoType
+GET http://localhost:3000/api/site-info/contact
+
+### Test POST Request to Create New Site Information
+POST http://localhost:3000/api/site-info
+Content-Type: application/json
+
+{
+    "infoType": "contact",
+    "address": {
+        "street": "123 Example Street",
+        "street2": "Suite 101",
+        "city": "Sample City",
+        "state": "Example State",
+        "zipCode": "12345"
+    },
+    "phoneNumber": "123-456-7890",
+    "customerServiceEmail": "support@example.com",
+    "salesEmail": "sales@example.com",
+    "content": "Additional information can be added here."
+}
+
+### Test PATCH Request to Update Site Information
+PATCH http://localhost:3000/api/site-info/contact
+Content-Type: application/json
+
+{
+    "address": {
+        "street": "321 New Street",
+        "city": "New City",
+        "state": "New State",
+        "zipCode": "54321"
+    },
+    "phoneNumber": "098-765-4321"
+}
+
+### Test DELETE Request for Site Information
+DELETE http://localhost:3000/api/site-info/contact

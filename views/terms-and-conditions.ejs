@@ -1,5 +1,7 @@
 <%- include('partials/header') %>
 
-
+<h1><%= termsConditions.title %></h1>
+<div><%- termsConditions.content %></div>
+<p>Last updated: <%= new Date(termsConditions.lastUpdated).toLocaleDateString() %></p>
 
 <%- include('partials/footer') %>

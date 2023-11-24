@@ -1,5 +1,7 @@
 <%- include('partials/header') %>
 
-
+<h1><%= privacyPolicy.title %></h1>
+<div><%- privacyPolicy.content %></div>
+<p>Last updated: <%= new Date(privacyPolicy.lastUpdated).toLocaleDateString() %></p>
 
 <%- include('partials/footer') %>

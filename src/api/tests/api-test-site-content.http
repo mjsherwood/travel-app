@@ -1,0 +1,29 @@
+### Test GET Request for All Site Content
+GET http://localhost:3000/api/site-content
+
+### Test GET Request for an Individual Site Content Piece
+GET http://localhost:3000/api/site-content/5d3fe7170f9b601b3456dc6b
+
+
+### Test POST Request to Create a New Site Content Piece
+POST http://localhost:3000/api/site-content
+Content-Type: application/json
+
+{
+    "pageName": "contact-information",
+    "title": "Contact Information",
+    "content": "<h2>1. Introduction</h2><p>Welcome to [Your Company Name]! These Terms and Conditions outline the rules and regulations for the use of [Your Company Name]'s Website, located at [Your Website URL].</p><h2>2. Acceptance of Terms</h2><p>By accessing this website, we assume you accept these terms and conditions. Do not continue to use [Your Website URL] if you do not agree to all of the terms and conditions stated on this page.</p><h2>3. Modification of Terms</h2><p>[Your Company Name] reserves the right to modify these terms at any time. By using this website, you are expected to review these terms on a regular basis.</p><h2>4. User Responsibilities</h2><p>The user agrees not to use the website in a way that may impair the performance, corrupt the content, or otherwise reduce the overall functionality of the website.</p><h2>5. Copyright</h2><p>All intellectual property rights are reserved. You may access this from [Your Website URL] for your personal use, subject to restrictions set in these terms and conditions.</p><h2>6. Privacy Policy</h2><p>Refer to our Privacy Policy, which also governs your use of [Your Website URL], to understand our practices: [Link to Privacy Policy].</p><h2>7. Limitation of Liability</h2><p>[Your Company Name] will not be liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.</p><h2>8. Governing Law & Jurisdiction</h2><p>These Terms will be governed by and interpreted in accordance with the laws of the State/Country of [Your Company's Location], and you submit to the non-exclusive jurisdiction of the state and federal courts located in [Location] for the resolution of any disputes.</p><h2>9. Contact Information</h2><p>If you have any questions about these Terms and Conditions, please contact us at: [Your Contact Information].</p>"
+}
+
+
+### Test PATCH Request to Update Site Content
+PATCH http://localhost:3000/api/site-content/655fc66f91c6632b6fe5f438
+Content-Type: application/json
+
+{
+    "title": "Privacy Policy",
+    "content": "<p>This Privacy Policy outlines how [Your Company Name] collects, uses, and protects the information gathered from its users. Our commitment is to ensure the privacy and security of our users' data.</p><h2>Information Collection</h2><p>We collect personal information such as names, email addresses, and other relevant data when users interact with our services, such as when they register, subscribe, or contact us for inquiries. This collection is primarily conducted through forms and cookies.</p><h2>Use of Information</h2><p>Collected information is used to provide and improve our services, respond to inquiries, send updates or marketing information, and enhance user experience.</p><h2>Information Sharing and Disclosure</h2><p>We may share user information with third-party service providers for operational purposes, or as required by law. We do not sell personal information to third parties.</p><h2>User Rights (GDPR Compliance)</h2><p>Under the GDPR, users have the right to access their personal data, request correction or deletion, object to processing, and request data portability. Users can exercise these rights by contacting us directly.</p><h2>User Rights (CCPA Compliance)</h2><p>California residents have the right to know about the personal information collected, used, and shared, request deletion of their personal data, and opt-out of the sale of their personal information.</p><h2>Data Security</h2><p>We implement various security measures like encryption and secure protocols to protect user data from unauthorized access, alteration, or destruction.</p><h2>International Data Transfers</h2><p>If we transfer data internationally, we ensure appropriate safeguards are in place to protect the information.</p><h2>Cookies and Tracking Technologies</h2><p>We use cookies and similar tracking technologies for functionality, analytics, and personalized experience. Users can control these through their browser settings.</p><h2>Changes to the Privacy Policy</h2><p>We reserve the right to modify this policy. Changes will be communicated through our website or via email.</p><h2>Contact Information</h2><p>For any privacy-related questions or requests, please contact us at [Your Contact Information].</p>"
+}
+
+### Test DELETE Request for Site Content
+DELETE http://localhost:3000/api/site-content/5d3fe7170f9b601b3456dc6d

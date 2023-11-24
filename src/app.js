@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const apiRoutes = require('./api');
 const authRoutes = require('./auth/authRoutes')
 const frontendRoutes = require('./routes'); 
+const siteInfoRoutes = require('./api/siteInfoRoutes');
 const path = require('path');
 const passport = require('passport');
 
@@ -25,6 +26,9 @@ app.use((req, res, next) => {
   res.locals.user = req.user; // req.user is defined by passport
   next();
 });
+
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
 
 // Initialize session middleware
 app.use(session({
@@ -51,6 +55,8 @@ app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 // Use the frontend routes
 app.use('/', frontendRoutes);
+// Use the site info routes
+app.use('/api/site-info', siteInfoRoutes);
 //Public folder
 app.use(express.static(path.join(__dirname, '..', 'public')));
 

@@ -1,0 +1,7 @@
+<%- include('partials/header') %>
+
+<h1><%= aboutUs.title %></h1>
+<div><%- aboutUs.content %></div>
+<p>Last updated: <%= new Date(aboutUs.lastUpdated).toLocaleDateString() %></p>
+
+<%- include('partials/footer') %>

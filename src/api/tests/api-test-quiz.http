@@ -1,0 +1,51 @@
+### Test GET Request for All Questions of a Specific Set
+GET http://localhost:3000/api/quiz/Initial
+
+### Test GET Request for an Individual Question
+GET http://localhost:3000/api/quiz/question/6552cd3db46d3ccf8aa15675
+
+### Test POST Request to Create a New Question
+POST http://localhost:3000/api/quiz
+Content-Type: application/json
+
+{
+    "text": "Choose a favorite leisure activity:",
+        "options": [
+            {
+                "text": "Hiking or Camping",
+                "imageUrl": "url-to-hiking-image.jpg",
+                "nextSet": "Adventure Seeker"
+            },
+            {
+                "text": "Reading or Visiting Museums",
+                "imageUrl": "url-to-museum-image.jpg",
+                "nextSet": "Culture Enthusiast"
+            },
+            {
+                "text": "Spa Day or Gardening",
+                "imageUrl": "url-to-spa-image.jpg",
+                "nextSet": "Relaxation Hunter"
+            },
+            {
+                "text": "Party or Social Events",
+                "imageUrl": "url-to-party-image.jpg",
+                "nextSet": "Social Butterfly"
+            }
+    ],
+    "setType": "Initial"
+}
+
+### Test PATCH Request to Update a Question
+PATCH http://localhost:3000/api/quiz/6552cf09b46d3ccf8aa15679
+Content-Type: application/json
+
+{
+    "text": "Updated Question Text",
+    "options": [
+        // Updated options if necessary
+    ]
+    // Other fields to update if necessary
+}
+
+### Test DELETE Request for a Question
+DELETE http://localhost:3000/api/quiz/6552cf09b46d3ccf8aa15679
