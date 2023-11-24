@@ -1,10 +1,12 @@
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
 const apiRoutes = require('./api');
 const authRoutes = require('./auth/authRoutes')
 const frontendRoutes = require('./routes'); 
 const siteInfoRoutes = require('./api/siteInfoRoutes');
+
 const path = require('path');
 const passport = require('passport');
 
@@ -20,6 +22,9 @@ app.set('views', path.join(__dirname, '..', 'views'));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// Middleware to enable flash messages
+app.use(flash());
 
 // Middleware to attach 'user' to all views
 app.use((req, res, next) => {
@@ -57,6 +62,7 @@ app.use('/auth', authRoutes);
 app.use('/', frontendRoutes);
 // Use the site info routes
 app.use('/api/site-info', siteInfoRoutes);
+
 //Public folder
 app.use(express.static(path.join(__dirname, '..', 'public')));
 

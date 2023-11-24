@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<h1>Account Information</h1>
+<p>Name: <%- user.displayName %></p>
+<p>Email: <%- user.email %></p>
+<!-- Include other user details as needed -->
+
+<% if (user.role === 'editor' || user.role === 'admin') { %>
+  <a href="/manage">Manage Site</a>
+<% } %>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') %>

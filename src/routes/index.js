@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const User = require('../models/user');
 const SiteContent = require('../models/siteContent');
 const SiteInfo = require('../models/siteInfo');
 const ContactSubmission = require('../models/contactSubmission');
@@ -83,7 +86,56 @@ router.get('/terms-and-conditions', async (req, res) => {
 
 // Login Page Route
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { messages: req.flash() });
+});
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/account', // Redirect to the account page
+    failureRedirect: '/login',  // Redirect back to login page
+    failureFlash: true          // Optional: Enable flash messages for errors
+}));
+
+// Registration Page Route
+router.get('/register', (req, res) => {
+    res.render('register');
+});
+
+router.post('/register', async (req, res) => {
+    const { displayName, email, password } = req.body;
+    try {
+        let existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).send('User already exists');
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({
+            displayName,
+            email,
+            password: hashedPassword
+            // Add other user fields as necessary
+        });
+
+        await newUser.save();
+        res.redirect('/login'); // Redirect to login page after successful registration
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error registering new user');
+    }
+});
+
+// Account Page Route
+router.get('/account', (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+    res.render('account', { user: req.user });
+});
+
+// Logout Route
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 
 // Accommodations Page Route
@@ -104,6 +156,11 @@ router.get('/explore', (req, res) => {
 // Quiz Page 1 Route
 router.get('/quiz1', (req, res) => {
     res.render('quiz/quiz1');
+});
+
+// Manage Page Route
+router.get('/manage', (req, res) => {
+    res.render('admin/manage');
 });
 
 module.exports = router;

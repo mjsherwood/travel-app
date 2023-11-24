@@ -1,5 +1,6 @@
 const express = require('express');
-const User = require('../models/user'); // Adjust the path as needed
+const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
 
 // Get all users
@@ -29,6 +30,30 @@ router.post('/', async (req, res) => {
         res.status(201).json(newUser);
     } catch (err) {
         res.status(400).json({ message: err.message });
+    }
+});
+
+router.post('/register', async (req, res) => {
+    try {
+        const { displayName, email, password } = req.body;
+
+        let user = await User.findOne({ email });
+        if (user) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user = new User({
+            displayName,
+            email,
+            password: hashedPassword
+        });
+
+        await user.save();
+        res.redirect('/login'); // Redirect to login page after successful registration
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
     }
 });
 
@@ -69,6 +94,26 @@ router.delete('/users/:id', getUser, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+router.post('/register', async (req, res) => {
+    const { displayName, email, password } = req.body;
+    try {
+        let user = await User.findOne({ email });
+        if (user) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user = new User({ displayName, email, password: hashedPassword });
+        await user.save();
+
+        res.redirect('/login');
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+
 
 // Middleware to get user by ID
 async function getUser(req, res, next) {

@@ -1,8 +1,40 @@
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
+
 require('dotenv').config();
+
+// Local strategy for email/password authentication
+passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    try {
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return done(null, false, { message: 'No user with that email' });
+        }
+
+        // Ensure you have a valid password to compare
+        if (!user.password) {
+            return done(null, false, { message: 'Incorrect password' });
+        }
+
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+            if (err) {
+                console.error("Error comparing passwords:", err);
+                return done(err);
+            }
+            if (isMatch) {
+                return done(null, user);
+            } else {
+                return done(null, false, { message: 'Password incorrect' });
+            }
+        });
+    } catch (err) {
+        return done(err);
+    }
+}));
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
