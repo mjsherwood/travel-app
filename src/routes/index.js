@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const checkAccountLevel = require('../utils/checkAccountLevel');
 const User = require('../models/user');
 const SiteContent = require('../models/siteContent');
 const SiteInfo = require('../models/siteInfo');
@@ -134,8 +135,13 @@ router.get('/account', (req, res) => {
 
 // Logout Route
 router.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.logout(function(err) {
+        if (err) { 
+            console.error("Logout error:", err);
+            return next(err);
+        }
+        res.redirect('/');
+    });
 });
 
 // Accommodations Page Route
@@ -159,8 +165,8 @@ router.get('/quiz1', (req, res) => {
 });
 
 // Manage Page Route
-router.get('/manage', (req, res) => {
-    res.render('admin/manage');
+router.get('/manage', checkAccountLevel(['editor', 'admin']), (req, res) => {
+    res.render('admin/manage', { user: req.user });
 });
 
 module.exports = router;
