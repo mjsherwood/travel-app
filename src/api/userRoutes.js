@@ -6,7 +6,7 @@ const router = express.Router();
 // Get all users
 router.get('/', async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().select('-password'); // Exclude password for security
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -82,6 +82,22 @@ router.patch('/:id', getUser, async (req, res) => {
         res.json(updatedUser);
     } catch (err) {
         res.status(400).json({ message: err.message });
+    }
+});
+
+// Update a user role
+router.patch('/:id/role', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        user.role = req.body.role; // Assuming 'role' is passed in the request body
+        await user.save();
+        res.send('User role updated successfully');
+    } catch (err) {
+        res.status(500).send('Error updating user role');
     }
 });
 

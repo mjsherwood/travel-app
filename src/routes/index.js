@@ -169,4 +169,35 @@ router.get('/manage', checkAccountLevel(['editor', 'admin']), (req, res) => {
     res.render('admin/manage', { user: req.user });
 });
 
+// Manage Accommodations
+router.get('/manage/accommodations', checkAccountLevel(['editor', 'admin']), (req, res) => {
+    res.render('admin/manage-accommodations');
+});
+
+// Manage Branding
+router.get('/manage/branding', checkAccountLevel(['editor', 'admin']), (req, res) => {
+    res.render('admin/manage-branding');
+});
+
+// Manage Experiences
+router.get('/manage/experiences', checkAccountLevel(['editor', 'admin']), (req, res) => {
+    res.render('admin/manage-experiences');
+});
+
+// Manage Restaurants
+router.get('/manage/restaurants', checkAccountLevel(['editor', 'admin']), (req, res) => {
+    res.render('admin/manage-restaurants');
+});
+
+// Manage User Roles (only accessible by admin)
+router.get('/manage/users', checkAccountLevel(['admin']), async (req, res) => {
+    try {
+        const users = await User.find().select('-password');
+        res.render('admin/manage-users', { users: users });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching users');
+    }
+});
+
 module.exports = router;

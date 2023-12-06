@@ -1,4 +1,37 @@
 <%- include('../partials/header') %>
 
+<h1>Manage Users</h1>
+<ul>
+<% users.forEach(user => { %>
+  <li>
+    <span><%= user.displayName %> - <%= user.role %></span>
+    <!-- Dropdown to change role -->
+    <select onchange="updateUserRole('<%= user._id %>', this.value)">
+      <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>User</option>
+      <option value="editor" <%= user.role === 'editor' ? 'selected' : '' %>>Editor</option>
+      <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>Admin</option>
+    </select>
+  </li>
+<% }); %>
+</ul>
+
+<script>
+  function updateUserRole(userId, newRole) {
+    // AJAX call to update user role
+    fetch('/api/users/' + userId + '/role', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ role: newRole }),
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data); // Display success message
+      // Alternatively, you can refresh the page or update the UI dynamically
+    })
+    .catch(error => console.error('Error:', error));
+  }
+</script>
 
 <%- include('../partials/footer') %>

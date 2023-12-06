@@ -1,4 +1,14 @@
 <%- include('../partials/header') %>
 
+<h1>Management Dashboard</h1>
+
+<a href="/manage/accommodations">Manage Accommodations</a><br>
+<a href="/manage/branding">Manage Branding</a><br>
+<a href="/manage/experiences">Manage Experiences</a><br>
+<a href="/manage/restaurants">Manage Restaurants</a><br>
+
+<% if (user.role === 'admin') { %>
+  <a href="/manage/users">Manage Users</a><br>
+<% } %>
 
 <%- include('../partials/footer') %>
