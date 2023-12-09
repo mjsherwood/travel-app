@@ -1,4 +1,20 @@
 <%- include('partials/header') %>
 
+<h1>Accommodations</h1>
+<div class="accommodations-container">
+    <% accommodations.forEach(accommodation => { %>
+        <div class="accommodation">
+            <% if (accommodation.images && accommodation.images.length > 0) { %>
+                <img src="<%= accommodation.images[0] %>" alt="Image of <%= accommodation.name %>">
+            <% } %>
+            <h2><%= accommodation.name %></h2>
+            <p><%= accommodation.description %></p>
+            <p>Location: <%= accommodation.location %></p>
+            <p>Price: <%= accommodation.price %></p>
+            <p>Rating: <%= accommodation.rating %></p>
+            <!-- Add other fields as needed -->
+        </div>
+    <% }); %>
+</div>
 
 <%- include('partials/footer') %>

@@ -7,6 +7,9 @@ const User = require('../models/user');
 const SiteContent = require('../models/siteContent');
 const SiteInfo = require('../models/siteInfo');
 const ContactSubmission = require('../models/contactSubmission');
+const Accommodation = require('../models/accommodations');
+const Restaurant = require('../models/restaurants');
+const Experience = require('../models/experiences');
 
 // Home Page Route
 router.get('/', (req, res) => {
@@ -145,18 +148,36 @@ router.get('/logout', (req, res) => {
 });
 
 // Accommodations Page Route
-router.get('/sleep', (req, res) => {
-    res.render('sleep');
+router.get('/sleep', async (req, res) => {
+    try {
+        const accommodations = await Accommodation.find({});
+        res.render('sleep', { accommodations });
+    } catch (err) {
+        console.error("Error: ", err);
+        res.status(500).send('Error retrieving accommodations');
+    }
 });
 
 // Restaurants Page Route
-router.get('/dine', (req, res) => {
-    res.render('dine');
+router.get('/dine', async (req, res) => {
+    try {
+        const restaurants = await Restaurant.find({});
+        res.render('dine', { restaurants });
+    } catch (err) {
+        console.error("Error: ", err);
+        res.status(500).send('Error retrieving restaurants');
+    }
 });
 
 // Experiences Page Route
-router.get('/explore', (req, res) => {
-    res.render('explore');
+router.get('/explore', async (req, res) => {
+    try {
+        const experiences = await Experience.find({});
+        res.render('explore', { experiences });
+    } catch (err) {
+        console.error("Error: ", err);
+        res.status(500).send('Error retrieving experiences');
+    }
 });
 
 // Quiz Page 1 Route

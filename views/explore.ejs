@@ -1,5 +1,21 @@
 <%- include('partials/header') %>
 
-
+<h1>Experiences</h1>
+<div class="experiences-container">
+    <% experiences.forEach(experience => { %>
+        <div class="experience">
+            <% if (experience.images && experience.images.length > 0) { %>
+                <img src="<%= experience.images[0] %>" alt="Image of <%= experience.title %>">
+            <% } %>
+            <h2><%= experience.title %></h2>
+            <p><%= experience.description %></p>
+            <p>Location: <%= experience.location %></p>
+            <p>Price: <%= experience.price %></p>
+            <p>Duration: <%= experience.duration %></p>
+            <p>Rating: <%= experience.rating %></p>
+            <!-- Add other fields as needed -->
+        </div>
+    <% }); %>
+</div>
 
 <%- include('partials/footer') %>

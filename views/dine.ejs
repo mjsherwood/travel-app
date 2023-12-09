@@ -1,5 +1,20 @@
 <%- include('partials/header') %>
 
-
+<h1>Restaurants</h1>
+<div class="restaurants-container">
+    <% restaurants.forEach(restaurant => { %>
+        <div class="restaurant">
+            <% if (restaurant.images && restaurant.images.length > 0) { %>
+                <img src="<%= restaurant.images[0] %>" alt="Image of <%= restaurant.name %>">
+            <% } %>
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.description %></p>
+            <p>Location: <%= restaurant.location %></p>
+            <p>Price Range: <%= restaurant.priceRange %></p>
+            <p>Rating: <%= restaurant.rating %></p>
+            <!-- Add other fields as needed -->
+        </div>
+    <% }); %>
+</div>
 
 <%- include('partials/footer') %>
